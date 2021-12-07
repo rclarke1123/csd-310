@@ -1,0 +1,25 @@
+use pysports;
+CREATE TABLE Team (
+    team_id int NOT NULL AUTO_INCREMENT,
+    team_name varchar(75) NOT NULL,
+    mascot varchar(75),
+    PRIMARY KEY (team_id)
+); 
+CREATE TABLE Player (
+    player_id int NOT NULL AUTO_INCREMENT,
+    first_name varchar(75) NOT NULL,
+    last_name varchar(75) NOT NULL,
+    team_id int NOT NULL,
+    PRIMARY KEY (player_id),
+    CONSTRAINT fk_team
+    FOREIGN KEY (team_id) REFERENCES Team(team_id)
+); 
+-- CREATE USER reba0310@localhost IDENTIFIED WITH mysql_native_password BY 'darlies10';
+-- GRANT ALL PRIVILEGES ON pysports.* TO reba0310@localhost;
+-- DROP USER IF EXISTS reba0310@localhost;
+-- insert team records
+INSERT INTO team(team_name, mascot)
+VALUES ('Team Clarke', 'Dog');
+
+INSERT INTO team(team_name, mascot)
+VALUES ('Team Allen', 'Deer');
