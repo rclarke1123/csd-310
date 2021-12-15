@@ -44,7 +44,7 @@ def show_menu():
     print("2 - View Store Locations")
     print("3 - My Account")
     print("4 - Quit\n")
-    ans = int(input("Enter 1, 2, 3, or 4 "))
+    ans = int(input("Enter 1, 2, 3, or 4 : "))
     return ans
 
 def show_books(_cursor, choice=1, _user_id=0):
@@ -67,6 +67,7 @@ def show_books(_cursor, choice=1, _user_id=0):
         validBookIds.append(book[0])
 
     while True:
+        print("\n")
         for book in bookRecords:
             print("BookID: {}\nBook Name: {}\nAuthor: {}\nDetails: {}\n".format(book[0], book[1], book[2], book[3]))
         if choice <= 0:
@@ -81,7 +82,7 @@ def show_books(_cursor, choice=1, _user_id=0):
 def show_locations(_cursor):
     locationRecords = _cursor.fetchall()
     for location in locationRecords:
-        print("StoreID: {}\nLocale: {}\n".format(location[0], location[1]))
+        print("\nStoreID: {}\nLocale: {}\n".format(location[0], location[1]))
 
 def validate_user(cursor):
     users = cursor.fetchall()
@@ -139,8 +140,9 @@ def add_book_to_wishlist (_cursor, _user_id, _book_id):
     except Exception as e: 
         print(e)
 
-def show_wishlist_menu (_cursor, _user_id):
+def show_wishlist_menu (db, _user_id):
     choice = 1
+    _cursor = db.cursor()
     while choice != 3:
         print("Wishlist Menu\n")
         print("1 - Wishlist")
@@ -152,13 +154,15 @@ def show_wishlist_menu (_cursor, _user_id):
         elif choice == 2:
             book_id = show_books_to_add (_cursor, _user_id)
             add_book_to_wishlist(_cursor, _user_id, book_id)
+            db.commit()
 
-def display_account_menu(cursor):
+def display_account_menu(db):
     query = "select * from User"
+    cursor = db.cursor()
     cursor.execute(query)
     user_id = validate_user(cursor)
     #book_id
-    show_wishlist_menu(cursor, user_id)    
+    show_wishlist_menu(db, user_id)    
 
 ans = 1
 config = {
@@ -181,7 +185,9 @@ try:
             cursor.execute(query)
             show_locations(cursor)
         elif ans == 3:
-            display_account_menu(cursor)
+            display_account_menu(db)
 
 except Exception as e:
     print(e)
+finally:
+    db.close()
