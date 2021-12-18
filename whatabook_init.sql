@@ -1,0 +1,20 @@
+-- this will be a string field that will include the street address, city, state, and zip
+insert into Store (locale) values ('134 West Market St. New York, NY 00853');
+
+insert into Book (book_name, details, author) values ('The Loud House', 'PaperCuts, 2011, Children', 'L. Cooke');
+insert into Book (book_name, details, author) values ('All Dogs go to Heaven', 'Smithville, 2003, Young Adult','S. Smith' );
+insert into Book (book_name, details, author) values ('Feet Feet Feet ', 'Club Books, 1996, Children', 'Dr. Suess');
+insert into Book (book_name, details, author) values ('To Kill A MOckingbird', 'McGrawHill, 1960, Young Adults', 'Harper Lee');
+insert into Book (book_name, details, author) values ('One Flew Over the Cuckoos Nest ', 'McGrawHill, 1949, Adult', 'E. Lester');
+insert into Book (book_name, details, author) values ('Pride and Prejudice', 'Hancock Press, 1889, Adult', 'J. Austin');
+insert into Book (book_name, details, author) values ('Unbreakable', 'Hancock Press, 1996, Adult', 'B. Lewis');
+insert into Book (book_name, details, author) values ('Pinkalicious', 'PaperCuts, 2002, Children', 'S. Wakes');
+insert into Book (book_name, details, author) values ('Fancy Nancy', 'Club Books, 2004, Children', 'F. Bains');
+
+insert into User (first_name, Last_name) values ('Rebecca', 'Clarke');
+insert into User (first_name, Last_name) values ('Liz', 'Johnson');
+insert into User (first_name, Last_name) values ('Ed', 'Miller');
+
+insert into Wishlist (user_id, book_id) values (1, 9);
+insert into Wishlist (user_id, book_id) values (2, 8);
+insert into Wishlist (user_id, book_id) values (3, 7);
